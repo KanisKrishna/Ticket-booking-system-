@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2 {
+            color: #007bff;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        label, select, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="number"] {
+            width: 100px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .category-info {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body style="background-image: url(https://st.redbus.in/Images/India/ContextualLogin/generic_banner_Ind.png); background-size: cover;">
+    <h1>Bus Ticket Booking</h1>
+    
+    <form action="book_tickets.php" method="post">
+        <label for="category">Select Category:</label>
+        <select name="category" id="category">
+            <option value="economy">Economy</option>
+            <option value="standard">Standard</option>
+            <option value="premium">Premium</option>
+        </select>
+        
+        <label for="num_tickets">Number of Tickets:</label>
+        <input type="number" name="num_tickets" id="num_tickets" min="1" max="10">
+        
+        <input type="submit" value="Book Tickets">
+    </form>
+    
+    <?php
+    // Dynamic data for available tickets and prices
+    $ticket_data = array(
+        "economy" => array("available" => 20, "price" => 20),
+        "standard" => array("available" => 15, "price" => 30),
+        "premium" => array("available" => 10, "price" => 50)
+    );
+    
+    foreach ($ticket_data as $category => $data) {
+        echo "<div class='category-info'>";
+        echo "<h2>$category Tickets</h2>";
+        echo "<p>Available: {$data['available']} | Price: ${$data['price']}</p>";
+        echo "</div>";
+    }
+    ?>
+</body>
+</html>
